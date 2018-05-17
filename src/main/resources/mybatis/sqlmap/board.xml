@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<!-- 게시판 추가 -->
+  <insert id="addNoticeBoard" parameterType="nbVO">
+  	INSERT INTO NOTICE_BOARD VALUES(NB_SEQ.NEXTVAL, #{nb_name}, SYSDATE, 'N', #{mem_id})
+  </insert>
+  
+  	<!-- 전체 게시판 조회 -->
+  <select id="nboardList" resultType="nbVO">
+  	SELECT *
+  	FROM   NOTICE_BOARD
+  </select>
+  
+  	<!-- 게시판의 전체글 리스트 -->
+  <select id="boardTextList" parameterType="int" resultType="boardVO">
+  	SELECT *
+	FROM   BOARD
+	WHERE  CATEGORY_SEQ = #{nb_seq}
+  </select>
+  
+  	<!-- 게시판 페이지 리스트 조회 -->
+  <select id="boardPageList" resultType="boardVO" parameterType="Map">
+  		SELECT  *
+		FROM
+		        (SELECT ROWNUM rn, BOARD.* 
+		        FROM   BOARD
+		        WHERE  CATEGORY_SEQ = #{nb_seq}
+		        ORDER BY BOARD_SEQ DESC)
+		WHERE   rn BETWEEN (#{page}-1)*#{pageSize}+1 AND (#{page})*(#{pageSize})
+  </select>
+  
+  	<!-- 글 상세보기 -->
+  <select id="getBoard" parameterType="int" resultType="boardVO">
+  	SELECT *
+	FROM   BOARD
+	WHERE  BOARD_SEQ = #{board_seq}
+  </select>
+  
+  	<!-- 글 수정 -->
+  <update id="updateBoard" parameterType="boardVO">
+  	UPDATE  BOARD
+	SET    TITLE = #{title},
+	       CONTENT = #{content}
+	WHERE  BOARD_SEQ = #{board_seq}
+  </update>
+  
+  	<!-- 글 삭제 -->
+  <update id="deleteBoard" parameterType="int">
+  	UPDATE  BOARD
+  	SET     DEL_YN = 'Y',
+  			TITLE = '삭제된 글입니다.'
+  	WHERE   BOARD_SEQ = #{board_seq}
+  </update>
+  
+  	<!-- 게시글 추가 -->
+  <insert id="insertBoard" parameterType="boardVO">
+	<selectKey resultType="int" keyProperty="board_seq" order="BEFORE">
+        SELECT BOARD_SEQ.NEXTVAL FROM DUAL        
+    </selectKey>
+  	INSERT INTO BOARD 
+  	VALUES(#{board_seq}, '', #{category_seq}, #{board_seq}, #{title}, #{content}, #{reg_id}, SYSDATE, 'N')
+  </insert>
+  
+</mapper>
