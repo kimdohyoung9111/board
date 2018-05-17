@@ -1,7 +1,6 @@
 package user.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import board.model.NoticeBoardVO;
-import board.service.BoardService;
-import board.service.BoardServiceInf;
 import user.model.UserVO;
 import user.service.UserService;
 import user.service.UserServiceInf;
+import board.model.NoticeBoardVO;
+import board.service.BoardService;
+import board.service.BoardServiceInf;
 
 /**
  * Servlet implementation class LoginServlet
