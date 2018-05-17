@@ -15,10 +15,10 @@
     <title>Main Screen</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/jsp/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/jsp/css/dashboard.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
 
   </head>
 

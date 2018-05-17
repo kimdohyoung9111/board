@@ -16,10 +16,10 @@
     <title>BoardList</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/jsp/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/jsp/css/dashboard.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/dashboard.css" rel="stylesheet">
 
     <%@ include file="/include/jQuery.jsp" %>
     <%@ include file="/include/commonCss.jsp" %>
@@ -96,6 +96,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="/jsp/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
